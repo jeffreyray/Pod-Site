@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Komodo Project File - DO NOT EDIT -->
+<project id="cd44000c-e328-44f2-b65e-765c2287b5e1" kpf_version="5" name="Pod-Site.komodoproject">
+<preference-set idref="cd44000c-e328-44f2-b65e-765c2287b5e1">
+  <boolean id="import_live">1</boolean>
+  <string relative="path" id="perlExtraPaths">lib</string>
+  <boolean id="perl_lintOption_includeCurrentDirForLinter">1</boolean>
+</preference-set>
+</project>
