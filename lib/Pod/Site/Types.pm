@@ -1,7 +1,5 @@
 package Pod::Site::Types;
-use MooseX::Types -declare => [qw(
-View 
-)];
+use MooseX::Types -declare => [qw( View )];
 
 use MooseX::Types::Moose qw( Object Str );
 

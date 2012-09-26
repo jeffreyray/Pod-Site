@@ -1,11 +1,9 @@
 package Pod::Site;
-our $VERSION = 0.01;
+our $VERSION = 0.02;
 
 use Moose;
-use MooseX::Method::Signatures;
 use MooseX::SemiAffordanceAccessor;
 use MooseX::StrictConstructor;
-use MooseX::Types::Moose qw( Object Str Undef );
 
 use File::Path qw( make_path );
 
@@ -19,13 +17,13 @@ use Pod::Site::View::HTML;
 
 has 'dir' => (
     is => 'rw',
-    isa => Str,
+    isa => 'Str',
     default => '.',
 );
 
 has 'uri' => (
     is => 'rw',
-    isa => Str,
+    isa => 'Str',
     default => '.',
 );
 
@@ -49,7 +47,10 @@ sub _build__parser {
     Pod::POM->new
 }
 
-method install_file( Str $file, Str $destination ? ) {
+sub install_file {
+    my ( $self, $file, $destination ) = @_;
+    
+    
     my $pom = $self->parse_file( $file );
     
     if ( ! $destination ) {
@@ -77,7 +78,9 @@ method install_file( Str $file, Str $destination ? ) {
     close $OUTPUT;
 }
 
-method install_dir( Str $dir ) {
+sub install_dir {
+    
+    my ( $self, $dir ) = @_;
     
     use File::Find;
     
@@ -137,6 +140,54 @@ L<Pod::Site> helps you create a web site of documentation.
 Most of the work is done by L<Pod::POM>. L<Pod::POM> takes care of parsing
 the pod and creating the html output. L<Pod::Site> manages what pod files
 to parse and where to store the output.
+
+
+=head1 PROVIDED ATTRIBUTES
+
+=over 4
+
+=item B<dir>
+
+Directory in which to create generated html files.
+
+=over 4
+
+=item is rw
+
+=item isa Str
+
+=item default %MYDOCUMENTS%/pod
+
+=back
+
+=item B<uri>
+
+The prefix to use when generating links in html files. Use this option if you
+want your links to start with http:// instead of file:///.
+
+=over 4
+
+=item is rw
+
+=item isa Str
+
+=item default file:///%MYDOCUMENTS%/pod
+
+=back
+
+=item B<view>
+
+=over 4
+
+=item is rw
+
+=item isa Pod::POM::View::HTML
+
+=item default Pod::Site::View::HTML
+
+=back
+
+=back
 
 =head1 AUTHOR
 

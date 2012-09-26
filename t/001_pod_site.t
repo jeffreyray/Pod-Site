@@ -34,7 +34,6 @@ sub view_pod {
         . qq[</head>\n]
         . qq[<body>\n]
         . qq[<div class="pod-content">\n]
-        #. qq[<link href="mystyle.css" rel="stylesheet" type="text/css"></link>\n]
  	. $pod->content->present($self)
         . qq[</div>\n]
         . qq[</body>\n]

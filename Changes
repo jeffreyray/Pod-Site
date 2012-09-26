@@ -1,0 +1,9 @@
+Changes for package Pod-Site
+
+0.02
+- update template
+- added bin\podsite.pl
+- removed dependancy on MooseX::Method::Signatures
+
+0.01
+- initial
