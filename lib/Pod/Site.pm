@@ -1,5 +1,5 @@
 package Pod::Site;
-our $VERSION = 0.02;
+our $VERSION = '0.03.1';
 
 use Moose;
 use MooseX::SemiAffordanceAccessor;
@@ -25,6 +25,12 @@ has 'uri' => (
     is => 'rw',
     isa => 'Str',
     default => '.',
+);
+
+has 'verbose' => (
+    is => 'rw',
+    isa => 'Bool',
+    default => 0,
 );
 
 has 'view' => (
@@ -82,6 +88,8 @@ sub install_dir {
     
     my ( $self, $dir ) = @_;
     
+    my $dirx = quotemeta $dir;
+    
     use File::Find;
     
     my @files;
@@ -99,7 +107,8 @@ sub install_dir {
 
     for my $file ( @files ) {
         my $destination = $file;
-        $destination =~ s/^$dir\/?//;
+        
+        $destination =~ s/^$dirx\/?//;
         $destination =~ s/\..*$/.html/;
         $self->install_file( $file, $destination );
     }

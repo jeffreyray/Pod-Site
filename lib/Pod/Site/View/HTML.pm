@@ -51,19 +51,26 @@ sub view_pod {
 sub view_seq_link {
     my ($self, $link) = @_;
     
-    if ( $link =~ /(\w|:)+/ ) {
+    if ( $link =~ /^</ ) {
+	return "$link";
+    }
+    
+    elsif ( $link =~ /(\w|:)+/ ) {
+	
         my ($loc, $text) = ($link, $link);
-        $loc =~ s/::/\//g;
+        $loc =~ s/::/\\/g;
         
-        my $path = $self->site->dir ? $self->site->dir . '/' : '';
-        $path .= $loc;
-        
+        my $path = $self->site->dir ? $self->site->dir . '\\' : '';
+        $path .= $loc . '.html';
+	
+	
         if ( -e $path ) {
             my $uri = $self->site->uri ? $self->site->uri . '/' : '';
             $uri .= $loc . '.html';
             return qq[<a href="$uri">$text</a>\n];
         }
         else {
+	    #print "not exist: $path\n";
             my $uri = qq[http://search.cpan.org/perldoc?$text];
             return qq[<a href="$uri">$text</a>\n];
         }

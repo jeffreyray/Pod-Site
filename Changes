@@ -1,5 +1,11 @@
 Changes for package Pod-Site
 
+0.03.1 Sept 26 2012
+- bug fix, external links
+
+0.03 Sep 26 2012
+- bug fix, internal links
+
 0.02
 - update template
 - added bin\podsite.pl
